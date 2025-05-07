@@ -1,0 +1,213 @@
+/* css/style.css */
+body {
+    font-family: var(--font-secondary);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    transition: background 0.5s ease;
+}
+
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-bg, #fff);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    color: var(--text-color);
+}
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border-left-color: var(--accent-color, #09f);
+    animation: spin 1s ease infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.hidden { display: none !important; }
+
+#homepage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    padding: 20px;
+    position: relative; /* For background animations */
+    overflow: hidden; /* Contain bg animations */
+}
+
+.homepage-content {
+    z-index: 1; /* Above bg animations */
+}
+
+#greeting {
+    font-family: var(--font-primary);
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    animation: fadeInDown 1s ease-out;
+}
+
+.cta-button {
+    font-family: var(--font-secondary);
+    font-size: 1.2rem;
+    padding: 15px 30px;
+    background-color: var(--accent-color);
+    color: var(--primary-bg); /* Contrast with accent */
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    animation: fadeInUp 1s 0.5s ease-out backwards;
+}
+.cta-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+#scrapbook-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    max-width: 1000px; /* Or adjust based on book size */
+    margin: auto;
+}
+
+.book {
+    width: 90vw; /* Responsive width */
+    height: 60vh; /* Responsive height */
+    max-width: 800px;
+    max-height: 550px;
+    position: relative;
+    box-shadow: 0 10px 30px var(--book-shadow);
+    transition: transform 0.5s ease; /* For potential hover effects */
+}
+
+.page {
+    width: 100%;
+    height: 100%;
+    background: var(--page-bg-actual);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.1); /* Subtle page border */
+    /* transform-origin for page flip is set by JS or specific CSS */
+}
+
+.hard-page { /* For covers */
+    background: var(--cover-bg-actual);
+    font-weight: bold;
+}
+
+.page .page-content {
+    padding: 20px;
+    text-align: center;
+    max-width: 90%;
+    max-height: 90%;
+    overflow-y: auto; /* If content exceeds page */
+}
+.page .page-content img {
+    max-width: 70%;
+    max-height: 60%; /* Adjust based on layout */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    margin-bottom: 15px;
+    object-fit: cover;
+}
+.page .page-content .caption {
+    font-style: italic;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    color: var(--text-color); /* Ensure readability */
+    opacity: 0.8;
+}
+
+.page-decorations {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; /* So they don't interfere with clicks */
+}
+
+.scrapbook-controls, .audio-controls {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+.scrapbook-controls button, .audio-controls button {
+    padding: 10px 15px;
+    background-color: var(--accent-color);
+    color: var(--primary-bg);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+.audio-controls button img {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+#volume-slider {
+    cursor: pointer;
+}
+
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    #greeting {
+        font-size: 1.8rem;
+    }
+    .cta-button {
+        font-size: 1rem;
+        padding: 12px 25px;
+    }
+    .book {
+        height: 70vh; /* Taller on mobile */
+    }
+    .page .page-content img {
+        max-width: 85%;
+    }
+    .page .page-content .caption {
+        font-size: 0.8rem;
+    }
+    .scrapbook-controls, .audio-controls {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
