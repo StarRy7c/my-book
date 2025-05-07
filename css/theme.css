@@ -1,0 +1,61 @@
+/* css/theme.css */
+:root {
+    /* Base Palette (can be overridden by themes) */
+    --font-primary: 'Georgia', serif;
+    --font-secondary: 'Helvetica Neue', sans-serif;
+    --text-color: #333;
+    --page-bg: #fff;
+    --book-shadow: rgba(0,0,0,0.2);
+
+    /* Pastel Dream Theme */
+    --pastel-pink: #F8C8DC;
+    --soft-blue: #A0C4FF;
+    --cream: #FFFDD0;
+    --lavender: #E6E6FA;
+    --gold-accent: #FFD700;
+    --pastel-text: #5M524D; /* Darker pastel for readability */
+    --pastel-page-bg: linear-gradient(135deg, var(--cream), var(--pastel-pink));
+    --pastel-cover-bg: linear-gradient(135deg, var(--soft-blue), var(--lavender));
+
+    /* Starry Night Theme */
+    --deep-indigo: #1A237E; /* Darker than #2E2A72 for more contrast */
+    --silver-stars: #E0E0E0;
+    --midnight-blue: #0D1B2A;
+    --starry-text: #F5F5F5;
+    --starry-page-bg: var(--midnight-blue);
+    --starry-cover-bg: var(--deep-indigo);
+}
+
+body.theme-pastel-dream {
+    --primary-bg: linear-gradient(135deg, var(--soft-blue), var(--pastel-pink));
+    --text-color: var(--pastel-text);
+    --page-bg-actual: var(--pastel-page-bg);
+    --cover-bg-actual: var(--pastel-cover-bg);
+    --accent-color: var(--gold-accent);
+    color: var(--text-color);
+    background: var(--primary-bg);
+}
+
+body.theme-starry-night {
+    --primary-bg: var(--midnight-blue);
+    --text-color: var(--starry-text);
+    --page-bg-actual: var(--starry-page-bg);
+    --cover-bg-actual: var(--starry-cover-bg);
+    --accent-color: var(--silver-stars);
+    color: var(--text-color);
+    background: var(--primary-bg);
+    /* Add starfield background */
+    background-image: radial-gradient(2px 2px at 20px 30px, var(--silver-stars), rgba(255,255,255,0)),
+                      radial-gradient(2px 2px at 40px 70px, #FFF, rgba(255,255,255,0)),
+                      radial-gradient(2px 2px at 50px 160px, #DDD, rgba(255,255,255,0)),
+                      radial-gradient(2px 2px at 90px 40px, #FFF, rgba(255,255,255,0)),
+                      radial-gradient(2px 2px at 130px 80px, #FFF, rgba(255,255,255,0)),
+                      radial-gradient(2px 2px at 160px 120px, #DDD, rgba(255,255,255,0));
+    background-size: 200px 200px;
+    animation: twinkle-stars 60s linear infinite;
+}
+
+@keyframes twinkle-stars {
+    0% { background-position: 0 0; }
+    100% { background-position: -200px -200px; } /* Adjust for seamless loop */
+}
